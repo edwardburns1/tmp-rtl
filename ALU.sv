@@ -13,7 +13,6 @@ localparam OR = 4'b0011;
 localparam XOR = 4'b0100;
 localparam SLT = 4'b0101;
 
-
   always @(ALUControl,operand1,operand2)
 begin 
     case(ALUControl)
