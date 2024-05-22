@@ -32,5 +32,4 @@ module reg_file(
             $display("Register %0d: %0d", i, registers[i]);
         end
     endtask
-
 endmodule

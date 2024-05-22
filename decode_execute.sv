@@ -1,7 +1,7 @@
 module decode_execute(
     input wire clk,             
     input wire reset,             
-    input wire [31:0] instruction
+  input wire [31:0] instruction,
     output reg [31:0] result,  
     output reg reg_write_enable 
 );

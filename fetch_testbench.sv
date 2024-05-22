@@ -1,18 +1,14 @@
-module top_level_tb();
-
-    // Define parameters
-    parameter CLK_PERIOD = 10; // Clock period in time units
-
-    // Declare signals
+module fetch_tb;
     reg clk;
     reg reset;
+  wire [31:0] instruction_out, pc_out;
 
-    // Instantiate the DUT (Design Under Test)
-    top_level dut (
+    fetch fetch_ins (
         .clk(clk),
-        .reset(reset)
+        .reset(reset),
+      .pc_out(pc_out),
+        .instruction(instruction_out)
     );
-
 
     // Clock generation
     always #5 clk = ~clk;
@@ -31,12 +27,13 @@ module top_level_tb();
   
     always @(posedge clk) begin
         if (!reset) begin
-          i++;
-          //$display("clock cycle: %d ", i++);
+          $display("clock cycle: %d | pc: %d | Instruction: %h", i++,pc_out, instruction_out);
         end
       if (i == 10) begin // Set end time to 100 time units
             $finish; // Finish simulation
         end
     end
   
+  
+
 endmodule

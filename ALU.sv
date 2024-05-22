@@ -14,10 +14,9 @@ localparam XOR = 4'b0100;
 localparam SLT = 4'b0101;
 
 
-  always @(ALUControl)
+  always @(ALUControl,operand1,operand2)
 begin 
     case(ALUControl)
-     
         ADD: result = operand1 + operand2;
         SUB: result = operand1 - operand2;
         AND: result = operand1 & operand2;

@@ -1,6 +1,6 @@
 module top_level(
     input wire clk,       // Clock signal
-    input wire reset,     // Reset signal
+    input wire reset     // Reset signal
 
     // Output signals
 );
@@ -15,13 +15,14 @@ reg decode_execute_reg_write_enable;
 // Instantiate pipeline stages
 fetch fetch_ins(
     .clk(clk),
-    .rst(reset),
+    .reset(reset),
+  .pc_out(fetch_pc),
     .instruction(fetch_instruction)
 );
-
+/*
 decode_execute decode_execute_ins(
     .clk(clk),
-    .rst(reset),
+    .reset(reset),
     .instruction(fetch_instruction),
     .result(decode_execute_result),
     .reg_write_enable(decode_execute_reg_write_enable)
@@ -29,23 +30,14 @@ decode_execute decode_execute_ins(
 
 write_back write_back_ins(
     .clk(clk),
-    .rst(reset),
+    .reset(reset),
     .result(decode_execute_result),
     .reg_write_enable(decode_execute_reg_write_enable)
-);
+);*/
 
 always @(posedge clk) begin
-    // Clock edge-triggered logic to control pipeline stages
-    if (!rst) begin
-        // Reset signals
-        fetch_pc <= 32'h0;   // Reset program counter to initial value
-        fetch_instruction <= 32'h0;
-        decode_execute_result <= 32'h0;
-        decode_execute_reg_write_enable <= 1'b0;
-    end else begin
-        // Control flow between stages
-        
-    end
+  $display("next pc: %d | Instruction: %h",fetch_pc, fetch_instruction);
+    
 end
 
 endmodule
